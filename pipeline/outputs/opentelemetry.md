@@ -27,7 +27,7 @@ Only HTTP endpoints are supported.
 | `logs_span_id_message_key` | The span id key to look up in the log events body/message. Sets the `SpanId` field of the OpenTelemetry logs data model. | `spanId` |
 | `logs_severity_text_message_key` | The severity text id key to look up in the log events body/message. Sets the `SeverityText` field of the OpenTelemetry logs data model. | `severityText` |
 | `logs_severity_number_message_key` | The severity number id key to look up in the log events body/message. Sets the `SeverityNumber` field of the OpenTelemetry logs data model. | `severityNumber` |
-| `add_label` | Lets you add custom labels to all metrics exposed through the OpenTelemetry exporter. You can have multiple of these fields. | _none_ |
+| `add_label` | Lets you add custom labels to all metrics and logs (resource attributes) exposed through the OpenTelemetry exporter. You can have multiple `add_label` fields for each label you want to add. | _none_ |
 | `compress` | Set payload compression mechanism. Allowed value: `gzip`. | _none_ |
 | `logs_observed_timestamp_metadata_key` | Specify an `ObservedTimestamp` key to look up in the metadata. | `$ObservedKey` |
 | `logs_timestamp_metadata_key` | Specify a `Timestamp` key to look up in the metadata.        | `$Timestamp`      |
@@ -37,6 +37,7 @@ Only HTTP endpoints are supported.
 | `logs_span_id_metadata_key`            | Specify a `SpanId` key to look up in the metadata.           | `$SpanId`         |
 | `logs_trace_id_metadata_key`           | Specify a `TraceId` key to look up in the metadata.          | `$TraceId`        |
 | `logs_attributes_metadata_key`         | Specify an `Attributes` key to look up in the metadata.      | `$Attributes`     |
+| `logs_body_key_attributes`             | When enabled (`true`), Fluent Bit will place all parsed JSON fields (except the one mapped by `logs_body_key`) inside the `attributes` section of the OpenTelemetry `LogRecord`. This is useful if you want structured key/value pairs as attributes, while still mapping a specific field (defined by `logs_body_key`) to the `body`. | `false` |
 | `workers`  | The number of [workers](../../administration/multithreading.md#outputs) to perform flush operations for this output. | `0` |
 
 ## Get started
